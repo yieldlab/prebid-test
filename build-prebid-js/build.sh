@@ -23,5 +23,4 @@ npm install -sq
 gulp "build-bundle-${BUILD_STAGE}"
 
 # copy result to target location
-ls -alR build/dev/prebid.js
 cp build/dev/prebid.js "${BUILD_TARGET}"

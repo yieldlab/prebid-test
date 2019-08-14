@@ -27,7 +27,7 @@ Source repo for the prebid projects as well as the source branches can be change
 
 ## prebid-server
 
-To configure prebid-server use environment variables and place them into the [prebid-server.env](prebid-server.env) From [prebid-server docs](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md#available-options):
+To configure prebid-server use environment variables and place them as `KEY=value` into the [prebid-server.env](prebid-server.env). From [prebid-server docs](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md#available-options):
 
 > Prebid Server will look for the prefix PBS_ on the environment variables, and map underscores (\_) to periods. For example, to set host_cookie.ttl_days via an environment variable, set PBS_HOST_COOKIE_TTL_DAYS to the desired value.
 
