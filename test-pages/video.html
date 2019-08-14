@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+
+  <script type="text/javascript">
+      var PREBID_TIMEOUT = 3300;
+
+        var adUnits = [{
+          code: 'div-gpt-ad-1460505748561-0',
+          mediaTypes: {
+            // banner: {
+            //   sizes: [[728, 90]],
+            // },
+            video: {
+              context: 'instream',
+              mimes: ['video/mp4'],
+              playerSize: [400, 600],
+              minduration: 1,
+              maxduration: 2,
+              protocols: [1, 2],
+              w: 1,
+              h: 2,
+              startdelay: 1,
+              placement: 1,
+              playbackmethod: [2]
+              // other OpenRTB video params
+            }
+          },
+          bids: [{
+                   bidder: "yieldlab",
+                   params: {
+                       adslotId: "5220339",
+                       supplyId: "1381604",
+                       adSize: "640x480",
+                       targeting: {
+                           key1: "value1",
+                           key2: "value2"
+                       },
+                       extId: "abc"
+                   }
+               }]
+        }];
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+  </script>
+
+  <script type="text/javascript" src="prebid.js/prebid.js" async></script>
+
+</script>
+  <script type="text/javascript">
+      var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function() {
+          googletag.pubads().disableInitialLoad();
+        });
+
+        pbjs.que.push(function() {
+          pbjs.setConfig({
+            s2sConfig: {
+                accountId: '1',
+                enabled: true,
+                bidders: ['yieldlab'],
+                timeout: 1000,
+                adapter: 'prebidServer',
+                endpoint: 'http://localhost:8000/openrtb2/auction',
+                syncEndpoint: 'http://localhost:8000/cookie_sync'
+            },
+            "currency": {
+               "adServerCurrency": "EUR",
+               // "granularityMultiplier": 108
+               // "defaultRates": { "USD": { "JPY": 110 }}
+            }
+          });
+          pbjs.addAdUnits(adUnits);
+          pbjs.requestBids({
+            bidsBackHandler: sendAdserverRequest
+          });
+        });
+
+        function sendAdserverRequest() {
+          if (pbjs.adserverRequestSent) return;
+          pbjs.adserverRequestSent = true;
+          googletag.cmd.push(function() {
+            pbjs.que.push(function() {
+              pbjs.setTargetingForGPTAsync();
+              googletag.pubads().refresh();
+            });
+          });
+        }
+
+        setTimeout(function() {
+          sendAdserverRequest();
+        }, PREBID_TIMEOUT);
+
+  </script>
+  <script type="text/javascript">
+      (function () {
+          var gads = document.createElement('script');
+          gads.async = true;
+          gads.type = 'text/javascript';
+          var useSSL = 'https:' == document.location.protocol;
+          gads.src = (useSSL ? 'https:' : 'http:') +
+            '//www.googletagservices.com/tag/js/gpt.js';
+          var node = document.getElementsByTagName('script')[0];
+          node.parentNode.insertBefore(gads, node);
+        })();
+  </script>
+  <script type="text/javascript">
+      googletag.cmd.push(function () {
+          googletag.defineSlot('/19968336/header-bid-tag-0', [[300, 250], [300, 600]], 'div-gpt-ad-1460505748561-0').addService(googletag.pubads());
+
+          googletag.pubads().enableSingleRequest();
+          googletag.enableServices();
+        });
+  </script>
+
+  <title></title>
+</head>
+
+<body>
+  <h2>Prebid.js Test</h2>
+
+  <h5>Div-1</h5>
+
+  <div id='div-gpt-ad-1460505748561-0'>
+    <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1460505748561-0'); });
+    </script>
+  </div>
+</body>
+</html>
