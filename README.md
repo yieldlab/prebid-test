@@ -6,6 +6,14 @@
 docker-compose up -d --build
 ```
 
+Then open http://localhost.local:9090 and choose a test page.
+
+Get container status:
+
+```
+docker-compose ps
+```
+
 ## config
 
 Source repo for the prebid projects as well as the source branches can be changed in the [.env](.env) file using the following variables:
